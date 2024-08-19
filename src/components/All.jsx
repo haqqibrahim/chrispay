@@ -83,7 +83,7 @@ export const All = () => {
         <Route path="/transfer" element={<Transfer password4payment={profileDetails.password} accAmount={profileDetails.amount}/>} />
         <Route path="/addfunds" element={<AddFunds thematric={profileDetails.user_id}/>} />
         <Route path="/cmu" element={<Cmu thestudent={thestudent} password4payment={profileDetails.password}/>} />
-        <Route path="/profile" element={<Profile profileDetails={profileDetails}/>}/>
+        <Route path="/profile" element={<Profile profileDetails={profileDetails} thematric={profileDetails.user_id}/>}/>
         <Route path="/test" element={<Game/>}/>
       </Routes>
     </Router>

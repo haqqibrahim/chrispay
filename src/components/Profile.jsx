@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
-import {TbCurrencyNaira} from 'react-icons/tb'
+import {TbCurrencyNaira, TbRuler2} from 'react-icons/tb'
 import {FiArrowLeft} from 'react-icons/fi'
 import {IoIosNotificationsOutline} from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { db } from "./firebase"
+import {collection, getDocs, getDoc, doc, updateDoc,increment} from "firebase/firestore"
 
-export const Profile = ({profileDetails}) => {
+export const Profile = ({profileDetails,thematric}) => {
     const {full_name,department,level,amount,firstname,user_id} = profileDetails;
+    const [changePassword, setChangepassword] = useState("")
+    const [confirmnewPassword, setConfirmnewpassword] = useState("")
+    const [passError, setPasserror] = useState(false)
+    const [successfulPass, setSuccessfulPass] = useState(false)
 
  
     const formatToNaira = (number) => {
@@ -17,6 +23,25 @@ export const Profile = ({profileDetails}) => {
       };
 
       const formattedNaira = formatToNaira(amount);
+
+    const toUpdatepassword = async ()=>{
+        if(changePassword != confirmnewPassword){
+             setPasserror(true);
+             setTimeout(()=>{
+                setPasserror(false);
+              },4000)
+        }else{
+        const toupdate = doc(db, "cmu-users", thematric);
+        const newPass = changePassword;
+        await updateDoc(toupdate, {password: newPass})
+        }
+        setChangepassword("")
+        setConfirmnewpassword("")
+        setSuccessfulPass(true)
+        setTimeout(()=>{
+            setSuccessfulPass(false);
+          },4000)
+    }
 
   return (
     <div className='profile_body'>
@@ -49,6 +74,17 @@ export const Profile = ({profileDetails}) => {
             
         </div>
         <Link to="/"><button className='signout'>Sign Out</button></Link>
+
+        <div classname="changePass">
+            <br></br>
+            <hr></hr>
+            <h2>Change Password</h2>
+            <input placeholder="New Password" className='passReset' value={changePassword} onChange={(e)=>setChangepassword(e.target.value)}/>
+            <input placeholder="Confirm New Password" className='passReset' value={confirmnewPassword} onChange={(e)=>setConfirmnewpassword(e.target.value)}/>
+            <button className='passwordBTN' onClick={toUpdatepassword}>Submit</button>
+            {passError && <h3 className='passtext'>Password doesn't match</h3>}
+            {successfulPass && <h3 className='successPass'>Password Changed</h3>}
+        </div>
         </div>    
     </div>
   )

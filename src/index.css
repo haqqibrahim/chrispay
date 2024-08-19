@@ -937,15 +937,49 @@ code {
   width: 80%;
   display: inline-flex;
   justify-content: space-between;
-  /* padding: 15px;
-  padding-top: 0;
-  padding-bottom: 5px; */
+
 }
 .same h4 {
   font-weight: 400;
 }
 .same h3 {
   font-weight: 500;
+}
+.changePass{
+  width: 80%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.passtext{
+  color: red;
+  font-weight: 500;
+}
+.successPass{
+  color: green;
+  font-weight: 200;
+}
+.passReset{
+  width: 60%;
+  max-width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding-left: 10px;
+}
+.passwordBTN{
+  width: 100px;
+  height: 35px;
+  color: #b3b2b2;
+  background-color: #202020;
+  border: 1px solid rgb(233, 230, 230);
+  border-radius: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
 }
 .signout {
   width: 100px;

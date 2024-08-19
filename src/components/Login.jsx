@@ -77,7 +77,7 @@ export const Login = ({user_id,input_password,setinput_password,getuser,setmatri
   return (
     <div class="cmu-body">
         <div className='image-drex'>
-            <h2>D R E X</h2>
+            <h2>C H R I S P A Y</h2>
             <img src={image} alt=""  className='loginimage'/>
         </div>
         {theSpinner && <div class="spinner2">. . . .</div>}
